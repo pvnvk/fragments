@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         //fragment
         FirstFragment firstFragment=new FirstFragment();
-        transaction.replace(R.id.pageContainer,firstFragment);
+        transaction.add(R.id.pageContainer,firstFragment);
 
 
         transaction.commit();

@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 public class SecondFragment extends Fragment implements View.OnClickListener {
 
-    LinearLayout layout;
+    LinearLayout containerLayout;
     Button mGoBt;
     EditText mEnterEt;
 
@@ -33,20 +33,20 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
 
         mGoBt =(Button)getView().findViewById(R.id.go_bt);
         mEnterEt =(EditText)getView().findViewById(R.id.personName);
-
+        containerLayout=getView().findViewById(R.id.insert);
         mGoBt.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        LayoutInflater vi=(LayoutInflater)getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view=vi.inflate(R.layout.dynamic_view,null);
 
-        TextView textView=(TextView)view.findViewById(R.id.person);
-        textView.setText(mEnterEt.getText().toString());
+        View view=getLayoutInflater().inflate(R.layout.dynamic_view,null);
 
-        ViewGroup insertPoint=(ViewGroup) getView().findViewById(R.id.insert);
-        insertPoint.addView(view);
+
+        TextView person=(TextView)view.findViewById(R.id.person);
+        person.setText(mEnterEt.getText().toString());
+
+        containerLayout.addView(view);
     }
 }

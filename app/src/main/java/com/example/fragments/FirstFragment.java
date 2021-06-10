@@ -29,18 +29,18 @@ public class FirstFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.first_fragment,container,false);
+        View view = inflater.inflate(R.layout.first_fragment,container,false); //ToDo: lyt name
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mMobileTv = (TextView)getView().findViewById(R.id.mobile_tv);
-        mEmailTv =(TextView)getView().findViewById(R.id.email_tv);
-        mPhotoIv =(ImageView)getView().findViewById(R.id.photo_iv);
-        mCallBt =(Button)getView().findViewById(R.id.call_bt);
+        View rootView = getView();
+        mMobileTv = (TextView) rootView.findViewById(R.id.mobile_tv); //ToDo: spacing
+        mEmailTv =(TextView) rootView.findViewById(R.id.email_tv);
+        mPhotoIv =(ImageView) rootView.findViewById(R.id.photo_iv);
+        mCallBt =(Button) getView().findViewById(R.id.call_bt);
         mMailBt =(Button)getView().findViewById(R.id.mail_bt);
         mGotoBt =(Button)getView().findViewById(R.id.goto_bt);
 
@@ -77,17 +77,21 @@ public class FirstFragment extends Fragment {
         mGotoBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager=getFragmentManager();
-                FragmentTransaction transaction=fragmentManager.beginTransaction();
-
-                //fragment
-                SecondFragment secondFragment=new SecondFragment();
-                transaction.replace(R.id.pageContainer,secondFragment);
-
-
-                transaction.commit();
+                openSecondFragment();
             }
         });
+        openSecondFragment();
+    }
 
+    private void openSecondFragment() {
+        FragmentManager fragmentManager=getFragmentManager();
+        FragmentTransaction transaction=fragmentManager.beginTransaction();
+
+        //fragment
+        SecondFragment secondFragment=new SecondFragment();
+        transaction.replace(R.id.pageContainer,secondFragment);//Todo: fragment naming use "_" instead of camelCasing
+//ToDo: Add to backstack
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

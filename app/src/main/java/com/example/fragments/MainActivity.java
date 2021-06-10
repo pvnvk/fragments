@@ -13,12 +13,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction transaction=fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         //fragment
         FirstFragment firstFragment=new FirstFragment();
-        transaction.add(R.id.pageContainer,firstFragment);
+        transaction.add(R.id.pageContainer, firstFragment);//ToDo: Fragment naming
 
 
         transaction.commit();
